@@ -1,0 +1,283 @@
+@charset "UTF-8";
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .08em;
+    background: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    color: #333;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:focus {
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #4357a3;
+    text-decoration: underline;
+}
+
+.top-div {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: black;
+}
+
+.logo-div {
+    flex: 1 1 267px;
+    margin: auto auto;
+}
+
+.escience-logo {
+    width: 100%;
+    margin-left: 50px;
+}
+
+.words-div {
+    flex: 1 1 267px;
+    display: flex;
+    flex-flow: column wrap;
+    margin: auto auto;
+}
+
+.word-div {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    text-align: right;
+}
+
+.blank-top-div {
+    flex: 1 1 267px;
+}
+.projects {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.project ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.project ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.project {
+    border: 2px solid #4357a3;
+    border-radius: 20px;
+    border-top: 7px solid #89a79b;
+    /* border-top: 5px solid #92abd3; */
+    width: 300px;
+    margin: 20px;
+    flex: 0 1 300px;
+    justify-content: center;
+}
+
+.project-logo-name {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.project-logo {
+    flex: 0 1 50px;
+}
+
+img.project-img {
+    height: 60px;
+    max-width: 100px;
+    margin: 10px;
+}
+
+.project-name {
+    flex: 1 1 auto;
+    font-weight: bold;
+    padding: 15px 10px 10px 10px;
+}
+
+.project-descript {
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.project-info {
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
+    border-top: 1px solid black;
+}
+
+.description-div {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: flex-end;
+    max-width: 1450px;
+}
+
+.description {
+    flex: 1 1 70%;
+}
+
+.theme-description {
+    padding: 10px 20px 10px 20px;
+}
+
+.nav-div {
+    flex: 1 1 30%;
+}
+
+.nav {
+    border: 1px solid black;
+    width: 200px;
+    margin: 20px auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.nav-title-logo {
+    width: 200px;
+}
+
+.nav-item {
+    flex: 1 1 40px;
+    padding: 10px 10px 10px 10px;
+    border-top: 1px solid lightgray;
+    font-weight: 600;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sponsor-heading {
+    margin-top: 10px;
+}
+
+.projspons {
+    margin-top: 5px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.projspons-imgdiv {
+    flex: 0 1 50px;
+}
+
+img.projspons-img {
+    width: 50px;
+}
+
+div.projspons-name {
+    flex: 1 1 50px;
+    margin: auto auto auto 10px;
+}
+
+.ulist-item {
+    margin-left: 15px;
+}
+
+@media screen and (max-width: 1359px) {
+    .description-div {
+        max-width: 1050px;
+    }
+}
+
+@media screen and (max-width: 1019px) {
+    .description-div {
+        flex-flow: column nowrap;
+    }
+    .description {
+        flex: 1 1 100px;
+    }
+    .nav {
+        flex-flow: row nowrap;
+        margin: 20px 0 0 30%;
+        border: none;
+    }
+    .nav-div {
+        flex: 1 1 70px;
+    }
+    .nav-item-logo {
+        display: none;
+    }
+    .nav-item {
+        border:1px solid black;
+    }
+}
+
+@media screen and (max-width: 975px) {
+    .escience-logo {
+        margin-left: 0;
+    }
+    .word-div {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 910px) {
+    .nav-div {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .words-div {
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .word-div {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .top-div {
+        flex-flow: column wrap;
+    }
+    .logo-div {
+        flex: 1 1 50px;
+    }
+    .words-div {
+        flex: 1 1 50px;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    .word-div {
+        padding: 5px;
+        justify-content: center;
+    }
+    .blank-top-div {
+        flex: 1 1 50px;
+    }
+    .escience-logo {
+        width: auto;
+    }
+}

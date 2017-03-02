@@ -1,0 +1,2176 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY here "http://tw.rpi.edu/instances/">
+  <!ENTITY tw "http://tw.rpi.edu/schema/">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
+  <!ENTITY sioc "http://rdfs.org/sioc/ns#">
+  <!ENTITY dc "http://purl.org/dc/terms/">
+  <!ENTITY ical "http://www.w3.org/2002/12/cal/ical#">
+  <!ENTITY time "http://www.w3.org/2006/time#">
+  <!ENTITY skos "http://www.w3.org/2008/05/skos#">
+  <!ENTITY void "http://rdfs.org/ns/void#">
+]>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="&tw;"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:xsd="&xsd;"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:sioc="&sioc;"
+    xmlns:foaf="&foaf;"
+    xmlns:dc="&dc;"
+    xmlns:skos="&skos;"
+    xmlns:void="&void;"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:ical="&ical;"
+  xml:base="&tw;">
+
+<!-- Ontology -->
+
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.w3.org/2006/time#"/>
+    <owl:imports rdf:resource="http://xmlns.com/foaf/spec/index.rdf"/>
+    <owl:imports rdf:resource="http://rdfs.org/sioc/ns#"/>
+    <rdfs:label xml:lang="en">Tetherless World Constellation Ontology</rdfs:label>
+    <dc:title xml:lang="en">Tetherless World Constellation Ontology</dc:title>
+    <rdfs:comment xml:lang="en">
+	This ontology is used within the Tetherless World Constellation (TWC) at Rensselaer Polytechnic Institute (RPI), Troy, New York.  It was originally designed and developed as part of the creation of a new web site utilizing the Drupal Content Management System (CMS) in 2009, but has since grown into an ontology used by various projects within the TWC lab including the Virtual Solar-Terrestrial Observatory (VSTO), the Biological and Chemical Oceanography - Data Management Office (BCO-DMO), Deep Carbon Observatory - Data Science project (DCO-DS), and many others.
+    </rdfs:comment>
+    <dc:creator rdf:resource="&here;PatrickWest"/>
+    <dc:creator rdf:resource="&here;EvanPatton"/>
+    <dc:contributor rdf:resource="&here;StephanZednik"/>
+    <dc:publisher rdf:resource="&here;TetherlessWorldConstellation"/>
+    <dc:date>2013-10-01</dc:date>
+    <dc:rights xml:lang="en">This ontology is distributed under a Creative Commons Attribution License http://creativecommons.org/licenses/by/3.0/</dc:rights>
+    <owl:versionInfo>v 1.0 $Revision: 11325 $: $Author: pwest $: $Date: 2015-08-04 01:56:21 -0600 (Tue, 04 Aug 2015) $:</owl:versionInfo>
+    <rdf:type rdf:resource="&void;Dataset;"/>
+    <void:sparqlEndpoint rdf:resource="http://tw.rpi.edu/endpoint/"/>
+    <void:feature rdf:resource="http://www.w3.org/ns/formats/N3"/>
+    <void:feature rdf:resource="http://www.w3.org/ns/formats/N-Triples"/>
+    <void:feature rdf:resource="http://www.w3.org/ns/formats/RDF_XML"/>
+    <void:feature rdf:resource="http://www.w3.org/ns/formats/Turtle"/>
+  </owl:Ontology>
+
+<!-- Classes -->
+
+  <!-- Document Classes -->
+
+  <owl:Class rdf:about="&tw;Publication">
+    <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en"
+    >A formal publication of a work, usually research related (although not necessarily)</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Publication</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PositionPaper">
+    <rdfs:label xml:lang="en"
+    >Position Paper</rdfs:label>
+    <rdfs:comment xml:lang="en">A position paper is an essay that presents an opinion about an issue, typically that of the author or another specified entity</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;JournalPaper">
+    <rdfs:label xml:lang="en"
+    >Journal Paper</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A paper published in a journal volume</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;MiscPublication">
+    <rdfs:label xml:lang="en"
+    >Miscellaneous Publication</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A publication that for one reason or another does not fit into another publication category</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;TechnicalReport">
+    <rdfs:label xml:lang="en"
+    >Technical Report</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A report document prepared as part of a grant or proposal</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Demonstration">
+    <rdfs:comment xml:lang="en">Identifies a demonstration of a technology or data set</rdfs:comment>
+    <rdfs:label xml:lang="en">Demonstration</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;AbstractPublication">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >An abstract published in a publication</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Abstract</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ProceedingPaper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A paper published in a conference proceedings</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Proceeding Paper</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Book">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Book</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A book publication</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;SymposiumPaper">
+    <rdfs:comment xml:lang="en"
+    >A paper published in the proceedings of a symposium</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;ProceedingPaper"/>
+    <rdfs:label xml:lang="en"
+    >Symposium Paper</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;WorkshopPaper">
+    <rdfs:comment xml:lang="en"
+    >A paper published in the proceedings of a workshop</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;ProceedingPaper"/>
+    <rdfs:label xml:lang="en"
+    >Workshop Paper</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DemoPaper">
+    <rdfs:comment xml:lang="en"
+    >A paper prepared to demonstrate research or other technologies</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Demonstration Paper</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PosterPaper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Poster Paper</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A poster presented at a workshop or conference</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Syllabus">
+    <rdfs:label xml:lang="en"
+    >Class Syllabus</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en"
+    >A document explaining the outline and schedule of a class</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;UseCase">
+    <rdfs:label xml:lang="en"
+    >Use-Case Document</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en">
+    In software and systems engineering, a use case is a list of steps, typically defining interactions between a role (known in Unified Modeling Language (UML) as an "actor") and a system, to achieve a goal. The actor can be a human or an external system. - Wikipedia.  It is a very specific, singular interaction between the role and the system. A Use Case Story is a much broader description of the system and how actors interact with it, containing multiple Use Cases.
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;UseCaseStory">
+    <rdfs:label xml:lang="en"
+    >Use-Case Story Document</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en">
+    A Use Case Story is a broad description of a software system and how individual actors might interact with it. From the Use Case story we can derive a set of much more specific and singular Use Cases. This is literally telling the story of the system.
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Presentation">
+    <rdfs:label xml:lang="en"
+    >Presentation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en"
+    >A presentation given for a work, e.g. internal talks or talks given at conferences or workshops</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DemoPresentation">
+    <rdfs:subClassOf rdf:resource="&tw;Presentation"/>
+    <rdfs:comment xml:lang="en"
+		>A demonstration of a tool or technology, usually given in conjunction with a DemoPaper</rdfs:comment>
+    <rdfs:label xml:lang="en"
+		>Demonstration Presentation</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PaperPresentation">
+    <rdfs:subClassOf rdf:resource="&tw;Presentation"/>
+    <rdfs:label xml:lang="en"
+    >Paper Presentation</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A presentation given based on a research paper</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;KeynotePresentation">
+    <rdfs:comment xml:lang="en"
+    >A Keynote Address given at an event</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Keynote Presentation</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Presentation"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;EventPresentation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Presentation"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A presentation given at a particular event</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Event Presentation</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;InvitedTalk">
+    <rdfs:comment xml:lang="en"
+    >A talk/presentation given at an event by an invited speaker</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Invited Talk</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Presentation"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;LightningTalk">
+    <rdfs:comment xml:lang="en" >A talk/presentation given at an event that has a short duration, such as 3-5 minutes</rdfs:comment>
+    <rdfs:label xml:lang="en" >Lightning Talk</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Presentation"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PosterPresentation">
+    <rdfs:comment xml:lang="en"
+    >A poster presented at a conference or workshop</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Poster Presentation</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Presentation"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Thesis">
+    <rdfs:label xml:lang="en"
+    >Thesis</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Publication"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A formal document that represents the culmination of an advanced degree</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PhdThesis">
+    <rdfs:label xml:lang="en"
+    >Dissertation</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A thesis prepared for completion of a doctorate</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Thesis"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;MastersThesis">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Thesis"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A thesis prepared by a candidate for a Masters degree</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Masters' Thesis</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;BookChapter">
+    <rdfs:subClassOf rdf:resource="&tw;Publication"/>
+    <rdfs:comment xml:lang="en"
+    >A chapter published as part of a book</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Book Chapter</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ConferencePaper">
+    <rdfs:comment xml:lang="en"
+    >A paper published in the proceedings of a conference</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;ProceedingPaper"/>
+    <rdfs:label xml:lang="en"
+    >Conference Paper</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Journal">
+    <rdfs:subClassOf rdf:resource="&tw;Publication"/>
+    <rdfs:label xml:lang="en">Journal</rdfs:label>
+    <rdfs:comment xml:lang="en">Representation of a journal in which scientific articles are published</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Issue">
+    <rdfs:subClassOf rdf:resource="&tw;Publication"/>
+    <rdfs:label xml:lang="en">Issue</rdfs:label>
+    <rdfs:comment xml:lang="en">An issue of a journal, date time coverage indicates the start and end of the issue</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&tw;number"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&tw;ofVolume"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Volume">
+    <rdfs:subClassOf rdf:resource="&tw;Publication"/>
+    <rdfs:label xml:lang="en">Volume</rdfs:label>
+    <rdfs:comment xml:lang="en">A volume in a journal issue</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&tw;number"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&tw;ofJournal"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Event Classes -->
+
+  <owl:Class rdf:about="&tw;Event">
+    <rdfs:subClassOf rdf:resource="&ical;Vevent"/>
+    <rdfs:comment xml:lang="en"
+    >Represents a continguous period of time when something of importance takes place</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Event</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Panel">
+    <rdfs:subClassOf rdf:resource="&tw;Event"/>
+    <rdfs:Comment xml:lang="en">a small group of people brought together to discuss, >investigate, or decide on a particular matter</rdfs:Comment>
+    <rdfs:label xml:lang="en">Panel</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Symposium">
+    <rdfs:subClassOf rdf:resource="&tw;Event"/>
+    <rdfs:Comment xml:lang="en"
+		  >Represents a symposium event</rdfs:Comment>
+    <rdfs:label xml:lang="en">Symposium</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;TWeD">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >Tetherless World Wednesday Night Talks</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >TWeD</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;GuestSpeaker">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >An event given by a guest of an organization on a particular topic</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Guest Speaker</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Workshop">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >The class of all workshops</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Workshop</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Track">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >Represents a particular track in multi-track conferences</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Track</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Conference">
+    <rdfs:label xml:lang="en"
+    >Conference</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >The class of all conferences</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Seminar">
+    <rdfs:label xml:lang="en"
+    >Seminar</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">a small group of students, as in a university, engaged in advanced study and original research under a member of the faculty and meeting regularly to exchange information and hold discussions</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;CIRSSSeminarSeries">
+    <rdfs:label xml:lang="en"
+    >CIRSS Seminar Series</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Seminar"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">The aim of the CIRSS Seminar Series is to provide a relaxed, no-prep venue for sharing our current research by presenting reruns of our recent conference presentations. All CIRSS faculty and student affiliates are welcome to present, and session attendance is open to the entire campus community. The series is organized by the Center for Informatics Research in Science and Scholarship at the University of Illinois at Urbana-Champaign.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ISWC">
+    <rdfs:label xml:lang="en"
+    >International Semantic Web Conference</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >The set of all meetings of the International Semantic Web Conference</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Conference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;OWLED">
+    <rdfs:label xml:lang="en"
+    >OWL Experiences and Direction</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >The set of all meetings of the OWL Experiences and Directions</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Conference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Meetings -->
+
+  <owl:Class rdf:about="&tw;Meeting">
+    <rdfs:comment xml:lang="en"
+    >Represents any meeting event</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;hasProjectReference"/>
+        </owl:onProperty>
+        <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;hasAttendee"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;hasMeetingNotes"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Event"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Meeting</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;MeetingNote">
+    <rdfs:comment xml:lang="en"
+    >Meeting notes recorded for a particular meeting</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Meeting Notes</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ActionItem">
+    <rdfs:comment xml:lang="en"
+    >An action item assigned during a meeting</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Action Item</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;dueDate"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;completionDate"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="&tw;assignedTo"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Role Classes -->
+
+  <owl:Class rdf:about="&tw;Role">
+    <rdfs:label xml:lang="en"
+    >Role</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A role an individual plays in relation to some entity (e.g., organization, project, etc.)</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Responsibility">
+    <rdfs:comment xml:lang="en"
+    >Set of responsibilities a role is comprised of</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Responsbility</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;TeachingAssistant">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Student"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A student who assists in teaching a class</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Teaching Assistant</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;MasterStudent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;GraduateStudent"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >A student seeking a Master's degree</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Master Student</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchAssociate">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Research Associate</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An individual who collaborates on research projects</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Researcher"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchComputerScientist">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Research Computer Scientist</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An individual with a degree in Computer Science working at a Research facility</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Researcher"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;SoftwareEngineer">
+    <rdfs:comment xml:lang="en"
+    >An individual employed to perform software development</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Software Engineer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;ResearchAssociate"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PhdStudent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;GraduateStudent"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Ph.D. Student</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A student seeking a doctorate</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Member">
+    <rdfs:comment xml:lang="en"
+    >Member of an organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Member</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Role"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Director">
+    <rdfs:comment xml:lang="en"
+    >Director of an organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Director</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Member" />
+    <rdfs:subClassOf rdf:resource="&tw;Staff" />
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DeputyDirector">
+    <rdfs:comment xml:lang="en"
+    >Deputy director of an organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Deputy Director</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Member" />
+    <rdfs:subClassOf rdf:resource="&tw;Staff" />
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PrincipalInvestigator">
+    <rdfs:comment xml:lang="en"
+    >Lead investigator and contact for a grant</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Principal Investigator</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Collaborator"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;CoInvestigator">
+    <rdfs:comment xml:lang="en"
+    >Co investigator and contact for a grant</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Co-Investigator</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Collaborator"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchCollaborator">
+    <rdfs:comment xml:lang="en"
+    >A researcher collaborating with an organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Research Collaborator</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Collaborator"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ProjectCollaborator">
+    <rdfs:comment xml:lang="en"
+    >A person collaborating with an organization on a project</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Project Collaborator</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Collaborator"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Presenter">
+    <rdfs:comment xml:lang="en"
+    >Indicates that a person gave a presentation</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Author"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Presenter</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Occupation">
+    <rdfs:label xml:lang="en"
+		>Occupation</rdfs:label>
+    <rdfs:comment xml:lang="en"
+		  >A formal role one plays in an organization, usually tied to payment of some form</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DataScientist">
+    <rdfs:label xml:lang="en"
+    >Post-Doc</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;ResearchScientist"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >An individual who specializes in the management, curation, and stewardship of  data</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PostDoc">
+    <rdfs:label xml:lang="en"
+    >Post-Doc</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;ResearchScientist"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en"
+    >An individual who has completed a doctorate and performs research, but does not hold a professorship</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;AssociateResearchScientist">
+    <rdfs:label xml:lang="en"
+    >Associate Research Scientist</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;ResearchScientist"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">
+	A scholar with a Masters or PhD in fields of science participating in research projects
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Researcher">
+    <rdfs:comment xml:lang="en"
+    >An individual who does research</rdfs:comment>
+    <rdfs:comment xml:lang="en"
+    >An individual who performs research, but is not a student</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Researcher</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Staff"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Editor">
+    <rdfs:label xml:lang="en"
+    >Editor</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >Represents an individual's role in editing a document</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PointOfContact">
+    <rdfs:label xml:lang="en"
+    >Point of Contact</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >Represents an individual who is one to communicate regarding a
+    particular thing, such as for a document, instrument, dataset
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Author">
+    <rdfs:label xml:lang="en"
+    >Author</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >Represents an individual's role in authoring a paper</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Collaborator">
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >Role assigned to individuals who are associated with a research project</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Collaborator</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;President">
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en">President</rdfs:label>
+    <rdfs:comment xml:lang="en">
+      The elected head of an organization
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Intern">
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en">Intern</rdfs:label>
+    <rdfs:comment xml:lang="en">
+      A student or trainee who works, sometimes without pay, at a trade
+      or occupation in order to gain work experience.
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Faculty">
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en">Faculty</rdfs:label>
+    <rdfs:comment xml:lang="en">
+      A faculty member teaches a course or holds tenure.
+    </rdfs:comment>
+    <rdfs:comment xml:lang="en">
+      An individual employed as a professor
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;SeniorSoftwareEngineer">
+    <rdfs:label xml:lang="en"
+    >Senior Software Engineer</rdfs:label>
+    <rdfs:comment xml:lang="en">An individual employed to perform software development who is
+    capable of being a technical lead, a lead developer, and take on
+    some management responsibilities</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;SoftwareEngineer"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PrincipalSoftwareEngineer">
+    <rdfs:label xml:lang="en"
+    >Principal Software Engineer</rdfs:label>
+    <rdfs:comment xml:lang="en">
+	An individual employed to perform software development who is responsible for the systems and applications architecture, and lead in the design and conceptualization of new data platforms and software frameworks.
+    </rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;SoftwareEngineer"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Visitor">
+    <rdfs:label xml:lang="en"
+    >Visitor</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An individual who has visited the Tetherless World Constellation as a speaker at an event, or professor, or collaborator, for an extended period</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;GraduateStudent">
+    <rdfs:comment xml:lang="en"
+    >A student seeking a graduate degree</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Graduate Student</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Student"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Alumni">
+    <rdfs:label xml:lang="en"
+    >Alumni</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >An individual who has received his or her degree</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Administrator">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:comment xml:lang="en"
+    >An individual who helps run an organization</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Staff"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en"
+    >Administrator</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;SystemAdministrator">
+    <rdfs:subClassOf rdf:resource="&tw;Administrator"/>
+    <rdfs:comment xml:lang="en"
+    >An individual who manages the IT resources of an organization</rdfs:comment>
+    <rdfs:label xml:lang="en">System Administrator</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Student">
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >A student enrolled in an educational system</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Student</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;FullProfessor">
+    <rdfs:comment xml:lang="en"
+    >A research professor with tenure</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Faculty"/>
+    <rdfs:label xml:lang="en"
+    >Full Professor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;AdjunctProfessor">
+    <rdfs:label xml:lang="en"
+    >Adjunct Professor</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An adjunct professor role is a faculty member hired by contract to teach a single course. This is not a tenure-track position</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Faculty"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchAssociateProfessor">
+    <rdfs:comment xml:lang="en"
+    >A research associate professor not yet with tenure</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Faculty"/>
+    <rdfs:label xml:lang="en"
+    >Research Associate Professor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;UndergraduateStudent">
+    <rdfs:label xml:lang="en"
+    >Undergraduate Student</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A student working on his or her Bachelor's degree</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Student"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;UndergraduateResearcher">
+    <rdfs:label xml:lang="en">Undergraduate Researcher</rdfs:label>
+    <rdfs:comment xml:lang="en">
+      Undergraduate Student working with a lab on an Independent Study
+      and/or with a Undergraduate Research Program
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Student"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Staff">
+    <rdfs:comment xml:lang="en"
+    >Individuals employed by the Tetherless World who are not research oriented</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:label xml:lang="en"
+    >Staff</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Advisor">
+    <rdfs:comment xml:lang="en">An individual who advises a student</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:label xml:lang="en">Advisor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;PrimaryAdvisor">
+    <rdfs:comment xml:lang="en">An individual who is the primary advisor to a student</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Advisor"/>
+    <rdfs:label xml:lang="en">Primary Advisor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Doctor">
+    <rdfs:comment xml:lang="en">An individual who has complete their doctorate work and obtained their doctoral degree in any field</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Role"/>
+    <rdfs:label xml:lang="en">Doctor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DoctorOfPhilosophy">
+    <rdfs:comment xml:lang="en">Individuals who have completed their doctorate work and obtained their doctoral degree in Philosophy</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Doctor"/>
+    <rdfs:label xml:lang="en">Doctor of Philosophy</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchScientist">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Research Scientist</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A scientist hired to perform research</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Researcher"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DirectorWebScienceOperations">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Director of Web Science Operations</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A person who is responsible for the operations of all projects
+    >related to Web Science</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Member"/>
+    <rdfs:subClassOf rdf:resource="&tw;Staff"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;DirectorDataOperations">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Director of Data Operations</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A person who is responsible for the operations of all projects
+    >related to Data Science</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Member"/>
+    <rdfs:subClassOf rdf:resource="&tw;Researcher"/>
+    <rdfs:subClassOf rdf:resource="&tw;Staff"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchEngineer">
+    <rdfs:subClassOf rdf:resource="&tw;Occupation"/>
+    <rdfs:label xml:lang="en"
+    >Research Engineer</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An engineer hired to perform research</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Researcher"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Announcement/News Classes-->
+
+  <owl:Class rdf:about="&tw;TwAnnouncement">
+    <rdfs:comment xml:lang="en"
+    >An announcement that mentions, or pertains to, the Tetherless World Constellation</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&tw;Announcement"/>
+    <rdfs:label xml:lang="en"
+    >Tetherless World Announcement</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;InTheNews">
+    <rdfs:label xml:lang="en"
+    >News Report</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Mention of the Tetherless World or its members in a news article</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;Announcement">
+	<rdfs:subClassOf rdf:resource="&sioc;Post"/>
+	<rdfs:label xml:lang="en">Announcement</rdfs:label>
+	<rdfs:comment xml:lang="en">An announcement item to be displayed in a web feed.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Course/Class Classes-->
+
+  <owl:Class rdf:about="&tw;Tutorial">
+    <rdfs:comment xml:lang="en"
+    >A class offered as part of a conference or workshop</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Tutorial</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&tw;CourseClass"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;CourseClass">
+    <rdfs:subClassOf rdf:resource="&tw;Event"/>
+    <rdfs:comment xml:lang="en">
+	A class given for a course that takes place at a specific time
+    </rdfs:comment>
+    <rdfs:label xml:lang="en">Course Class</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Course">
+    <rdfs:comment xml:lang="en">
+	A part of a curriculum that covers a specific topic of study
+    </rdfs:comment>
+    <rdfs:label xml:lang="en">Course</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Organzation Classes -->
+
+  <owl:Class rdf:about="&tw;Publisher">
+    <rdfs:comment xml:lang="en">An organization that publishes journals, books and >other publications</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Publisher</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;ResearchInstitute">
+    <rdfs:comment xml:lang="en">
+      A research institute is an establishment endowed for doing research. Research institutes may specialize in basic research or may be oriented to applied research.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Research Institute</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Laboratory">
+    <rdfs:comment xml:lang="en">
+      A laboratory is a facility that provides controlled conditions in which scientific research, experiments, and measurement may be performed.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Laboratory</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;FundingOrganization">
+    <rdfs:comment xml:lang="en">
+      An organization that provides funding through grants, gifts, or other means, to another organization for specific purposes.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Funding Organization</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Museum">
+    <rdfs:comment xml:lang="en">
+      A museum is an institution that cares for (conserves) a collection of artifacts and other objects of scientific, artistic, cultural, or historical importance and makes them available for public viewing through exhibits that may be permanent or temporary.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Museum</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Library">
+    <rdfs:comment xml:lang="en">
+      A library is an organized collection of information resources made accessible to a defined community for reference or borrowing. It provides physical or digital access to material, and may be a physical building or room, or a virtual space, or both.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Library</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Corporation">
+    <rdfs:comment xml:lang="en">
+      A corporation is an association of individuals, created by law or under authority of law, having a continuous existence independent of the existences of its members, and powers and liabilities distinct from those of its members.
+    </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Corporation</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Agency">
+    <rdfs:comment xml:lang="en">An agency (or its divisions/directorates) provides funding for a project</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Agency</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Division">
+    <rdfs:comment xml:lang="en">Representation of a division in an organization</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Division</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;University">
+    <rdfs:comment xml:lang="en">An institution of higher education and
+    research which grants academic degrees in a variety of subjects and
+    provides both undergraduate education and postgraduate education.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">University</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Directorate">
+    <rdfs:comment xml:lang="en">Representation of a directorate in an organization</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en">Directorate</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Program">
+    <rdfs:comment xml:lang="en">A program created by a funding agency</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="&foaf;Agent"/>
+    <rdfs:label xml:lang="en">Program</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <!-- Misc Classes-->
+
+  <owl:Class rdf:about="&tw;Theme">
+    <rdfs:comment xml:lang="en"
+    >A research theme, usually encompassing many concepts and research projects</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Theme</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;LDAPAccount">
+    <rdfs:label xml:lang="en"
+    >TW Online Account</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An account used within the Tetherless World Constellation for >access to resources</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="&foaf;OnlineAccount"/>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;SelectedWork">
+    <rdfs:label xml:lang="en"
+    >Selected Work</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Works, such as publications and presentations, that are selected >for presentation for a particular thing, such as a project</rdfs:comment>
+    <owl:disjointWith rdf:resource="&foaf;Document"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;WorkingGroup">
+    <rdfs:subClassOf rdf:resource="&foaf;Group"/>
+    <rdfs:label xml:lang="en">Working Group</rdfs:label>
+    <rdfs:comment xml:lang="en">A working group created to address an issue for a particular project</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&tw;Concept">
+    <rdfs:comment xml:lang="en"
+    >A single topic or idea that various objects can embody</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Concept</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&skos;Concept"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.w3.org/2006/time#Instant"/>
+
+<!-- Object Properties -->
+
+  <owl:ObjectProperty rdf:about="&tw;hasInterest">
+    <rdfs:domain rdf:resource="&foaf;Agent"/>
+    <rdfs:comment xml:lang="en"
+    >Indicates that a person has a particular interest</rdfs:comment>
+    <rdfs:range rdf:resource="&tw;Concept"/>
+    <rdfs:label xml:lang="en"
+    >Has Interest</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;taggedWithConcept">
+    <rdfs:comment xml:lang="en"
+    >Indicates that the subject is tagged with a hierarchical vocabulary term</rdfs:comment>
+    <rdfs:range rdf:resource="&skos;Concept"/>
+    <rdfs:label xml:lang="en">Tagged with Concept</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAgentWithRole">
+    <rdfs:range rdf:resource="&tw;Role"/>
+    <rdfs:comment xml:lang="en"
+    >Specifies that a project, event, organization, class, course, or
+    other thing has an individual with a particular role</rdfs:comment>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&tw;Event"/>
+          <owl:Class rdf:about="&tw;Course"/>
+	  <owl:Class rdf:about="&tw;WorkingGroup"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:label xml:lang="en"
+    >Has Agent with Role</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasSponsor">
+    <rdfs:label xml:lang="en"
+    >Sponsored By</rdfs:label>
+    <rdfs:range rdf:resource="&foaf;Agent"/>
+    <rdfs:comment xml:lang="en"
+    >Indicates the organization that sponsors a particular project</rdfs:comment>
+    <!--<rdfs:domain rdf:resource="&foaf;Project"/>-->
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;containsActionItem">
+    <rdfs:domain rdf:resource="&tw;MeetingNote"/>
+    <rdfs:comment xml:lang="en"
+    >Relates an action item to the Meeting Notes object that created that action item</rdfs:comment>
+    <rdfs:range rdf:resource="&tw;ActionItem"/>
+    <rdfs:label xml:lang="en"
+    >Contains Action Item</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasMeetingNotes">
+    <rdfs:domain rdf:resource="&tw;Meeting"/>
+    <rdfs:comment xml:lang="en"
+    >Meeting notes for a meeting</rdfs:comment>
+    <rdfs:range rdf:resource="&tw;MeetingNote"/>
+    <rdfs:label xml:lang="en"
+    >Meeting Notes</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAuthor">
+    <rdfs:domain rdf:resource="&foaf;Document"/>
+    <rdfs:range rdf:resource="&tw;Author"/>
+    <rdfs:label xml:lang="en"
+    >Author</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An author of a document</rdfs:comment>
+    <owl:inverseOf rdf:resource="&tw;ofDocument"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasLocation">
+    <rdfs:comment xml:lang="en"
+    >Indicates the location of a particular agent or event</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Has Location</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasDateTimeCoverage">
+    <rdfs:range rdf:resource="http://www.w3.org/2006/time#Interval"/>
+    <rdfs:label xml:lang="en"
+    >Duration</rdfs:label>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&tw;Role"/>
+          <owl:Class rdf:about="&tw;Event"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Indicates the duration of a project, role, or event</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;cc">
+    <rdfs:range rdf:resource="&foaf;Person"/>
+    <rdfs:domain rdf:resource="&tw;ActionItem"/>
+    <rdfs:label xml:lang="en"
+    >Carbon Copy</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates that updates on Trac for the action item should be CCed to the specified individual</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;dueDate">
+    <rdfs:label xml:lang="en"
+    >Due Date</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates the date the Action Item should be completed by</rdfs:comment>
+    <rdfs:domain rdf:resource="&tw;ActionItem"/>
+<!--
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Event"/>
+          <owl:Class rdf:about="http://www.w3.org/2006/time#Instant"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+-->
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;assignedTo">
+    <rdfs:comment xml:lang="en"
+    >Indicates an individual who has been assigned the action item</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Assigned To</rdfs:label>
+    <rdfs:domain rdf:resource="&tw;ActionItem"/>
+    <rdfs:range rdf:resource="&foaf;Person"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;completionDate">
+    <rdfs:comment xml:lang="en"
+    >Indicates the date the action item was completed</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Completion Date</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2006/time#Instant"/>
+    <rdfs:domain rdf:resource="&tw;ActionItem"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;forCourse">
+    <rdfs:comment xml:lang="en"
+    >A class that is taught has part of an ongoing course</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >For Course</rdfs:label>
+    <rdfs:domain rdf:resource="&tw;CourseClass"/>
+    <rdfs:range rdf:resource="&tw;Course"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasTopic">
+    <rdfs:comment xml:lang="en"
+    >Relates various objects to a particular concept</rdfs:comment>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&tw;Theme"/>
+          <owl:Class rdf:about="&tw;Event"/>
+          <owl:Class rdf:about="&tw;Course"/>
+          <owl:Class rdf:about="&foaf;Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:label xml:lang="en"
+    >Has Topic</rdfs:label>
+    <rdfs:range rdf:resource="&tw;Concept"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasProjectReference">
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Meeting"/>
+          <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&foaf;Document"/>
+	  <owl:Class rdf:about="&tw;WorkingGroup"/>
+	  <owl:Class rdf:about="&tw;Announcement"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Indicates a relationship between a document and a project</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Related Project</rdfs:label>
+    <rdfs:range rdf:resource="&foaf;Project"/>
+    <rdfs:subPropertyOf rdf:resource="&tw;hasReference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasWorkingGroupReference">
+    <rdfs:domain rdf:resource="&tw;Meeting"/>
+    <rdfs:range rdf:resource="&tw;WorkingGroup"/>
+    <rdfs:comment xml:lang="en"
+		  >Specifies that a meeting is associated with a particular working group</rdfs:comment>
+    <rdfs:label xml:lang="en"
+		>Has Working Group Reference</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="&tw;hasReference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&foaf;logo">
+    <rdfs:range rdf:resource="&foaf;Image"/>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Theme"/>
+          <owl:Class rdf:about="&foaf;Project"/>
+	  <owl:Class rdf:about="&foaf;Organization"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Represents a logo for a theme, project, or organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Logo</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasDeadline">
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">A generic property to indicate deadlines for events.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasPaperDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Paper Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for paper submissions to an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasRegistrationDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Registration Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for registering for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAbstractDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Abstract Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for abstract submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasDemoDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Demonstration Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for demonstration submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasPosterDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Poster Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for poster submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasPanelDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Panel Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for panel submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasTutorialDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Tutorial Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for tutorial submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasWorkshopProposalDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Workshop Proposal Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for workshop proposals for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasUploadDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Upload Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for final uploads for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasCameraReadyDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Camera Ready Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for camera ready submissions for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasNotificationDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Notification Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for when notifications will be sent out regarding acceptance of submissions to an event</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasSupportDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Support Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for submitting for financial support.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasEarlyRegistrationDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Early Registration Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for early registration for an event.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasDoctoralConsortiumDeadline">
+    <rdfs:subPropertyOf rdf:resource="&tw;hasDeadline"/>
+    <rdfs:range rdf:resource="&time;Instant"/>
+    <rdfs:label xml:lang="en">Doctoral Consortium Deadline</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the deadline for submissions to a doctoral consortium.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&foaf;depiction">
+    <rdfs:range rdf:resource="&foaf;Image"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasSelector">
+    <rdfs:range rdf:resource="&foaf;Agent"/>
+    <rdfs:domain rdf:resource="&tw;SelectedWork"/>
+    <rdfs:label xml:lang="en">Has Selector</rdfs:label>
+    <rdfs:comment xml:lang="en">The person who selects this work for a particular context</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasSelectionContext">
+    <rdfs:domain rdf:resource="&tw;SelectedWork"/>
+    <rdfs:label xml:lang="en">Has Selection Context</rdfs:label>
+    <rdfs:comment xml:lang="en">The context for which something is selected</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasSelection">
+    <rdfs:domain rdf:resource="&tw;SelectedWork"/>
+    <rdfs:label xml:lang="en">Has Selection</rdfs:label>
+    <rdfs:comment xml:lang="en">The work selected</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasResponsibility">
+    <rdfs:range rdf:resource="&tw;Responsibility"/>
+    <rdfs:label xml:lang="en">Has Responsibility</rdfs:label>
+    <rdfs:comment xml:lang="en">The relationship between an entity and one or more responsibilities it has (usually under a tw:Role).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;ofVolume">
+    <rdfs:range rdf:resource="&tw;Volume"/>
+    <rdfs:domain rdf:resource="&tw;Issue"/>
+    <rdfs:label xml:lang="en">Of Issue</rdfs:label>
+    <rdfs:comment xml:lang="en">Establishes the relationship between a volume and the issue it appears in.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;ofJournal">
+    <rdfs:domain rdf:resource="&tw;Volume"/>
+    <rdfs:range rdf:resource="&tw;Journal"/>
+    <rdfs:label xml:lang="en">Of Journal</rdfs:label>
+    <rdfs:comment xml:lang="en">Establishes the relationship between an issue and its journal</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasProgram">
+    <rdfs:comment xml:lang="en">Indicates that an agency funds a program</rdfs:comment>
+    <rdfs:domain rdf:resource="&foaf;Organization"/>
+    <rdfs:range rdf:resource="&tw;Program"/>
+    <rdfs:label xml:lang="en">Has Program</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;ofDocument">
+    <rdfs:label xml:lang="en"
+    >On Document</rdfs:label>
+    <rdfs:domain rdf:resource="&tw;Author"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="&tw;hasAuthor"/>
+    </owl:inverseOf>
+    <rdfs:comment xml:lang="en"
+    >Relates an author role to a specific document</rdfs:comment>
+    <rdfs:range rdf:resource="&foaf;Document"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;inEvent">
+<!--
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Conference"/>
+          <owl:Class rdf:about="&tw;Workshop"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+-->
+    <rdfs:label xml:lang="en"
+    >In</rdfs:label>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Track"/>
+          <owl:Class rdf:about="&tw;Publication"/>
+          <owl:Class rdf:about="&tw;Presentation"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Relates a track to a conference or workshop</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasRole">
+    <rdfs:domain rdf:resource="&foaf;Agent"/>
+    <rdfs:comment xml:lang="en"
+    >Establishes an individual's role</rdfs:comment>
+    <rdfs:range rdf:resource="&tw;Role"/>
+    <rdfs:label xml:lang="en"
+    >Has Role</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasReference">
+    <rdfs:label xml:lang="en"
+    >A Reference to something</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates that something refers to something else</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasPublicationReference">
+    <rdfs:domain rdf:resource="&foaf;Document"/>
+    <rdfs:range rdf:resource="&tw;Publication"/>
+    <rdfs:comment xml:lang="en">Indicates that a document references another document (either implicitly or via explicit citation)</rdfs:comment>
+    <rdfs:label xml:lang="en">References Publication</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="&tw;hasReference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;isPlayedBy">
+    <rdfs:domain rdf:resource="&tw;Role"/>
+    <rdfs:range rdf:resource="&foaf;Agent"/>
+    <rdfs:comment xml:lang="en"
+		  >Establishes a relationship between a role and the individual who plays it</rdfs:comment>
+    <rdfs:label xml:lang="en">Is Played By</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasThemeReference">
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+	  <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&tw;Event"/>
+          <owl:Class rdf:about="&foaf;Document"/>
+          <owl:Class rdf:about="&tw;Course"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Indicates that a document, project, or event refers to a theme</rdfs:comment>
+    <rdfs:range rdf:resource="&tw;Theme"/>
+    <rdfs:label xml:lang="en"
+    >References Theme</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="&tw;hasReference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAnnouncementDate">
+    <rdfs:comment xml:lang="en"
+    >Indicates the date of an announcement</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Date</rdfs:label>
+    <rdfs:domain rdf:resource="&tw;Announcement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2006/time#Instant"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasLeadProfessor">
+    <rdfs:range rdf:resource="&foaf;Person"/>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Theme"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Specifies the professor in charge of investigating a particular
+    theme or teaching a particular course in the curriculum</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Lead Professor</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;withAffiliation">
+    <rdfs:domain rdf:resource="&tw;Role"/>
+    <rdfs:label xml:lang="en"
+    >Affiliation</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Relates a role with an organization</rdfs:comment>
+    <rdfs:range rdf:resource="&foaf;Organization"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasParentOrganization">
+    <rdfs:range rdf:resource="&foaf;Organization"/>
+    <rdfs:domain rdf:resource="&foaf;Organization"/>
+    <rdfs:label xml:lang="en"
+    >Parent Organization</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates that one organization is part of another organization</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAttendee">
+    <rdfs:label xml:lang="en"
+    >Attendee</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >An attendee of a meeting</rdfs:comment>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Event"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:range rdf:resource="&foaf;Person"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasPersonReference">
+    <rdfs:label xml:lang="en"
+    >Mentions</rdfs:label>
+    <rdfs:range rdf:resource="&foaf;Person"/>
+    <rdfs:domain rdf:resource="&tw;Announcement"/>
+    <rdfs:comment xml:lang="en"
+    >Indicates that an announcement mentions a particular individual</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="&tw;hasReference"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasAffiliation">
+    <rdfs:comment xml:lang="en"
+    >Indicates a person's affiliation with a particular organization</rdfs:comment>
+    <rdfs:domain rdf:resource="&foaf;Agent"/>
+<!--
+    <rdfs:range>
+      <owl:Class>
+	<owl:unionOf rdf:parseType="Collection">
+	  <owl:Class rdf:about="&foaf;Project"/>
+	  <owl:Class rdf:about="&foaf;Organization"/>
+	  <owl:Class rdf:about="&foaf;Group"/>
+	</owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+-->
+    <rdfs:label xml:lang="en"
+    >Affiliated With</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&tw;hasDate">
+    <rdfs:comment xml:lang="en"
+    >The day something is made available</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2006/time#Instant"/>
+    <rdfs:label xml:lang="en"
+    >Has Date</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:ObjectProperty>
+
+<!-- Datatype Properties -->
+
+  <owl:DatatypeProperty rdf:about="&tw;hasText">
+    <rdfs:comment xml:lang="en"
+    >Text for the meeting notes or an action item</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Text</rdfs:label>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;MeetingNote"/>
+          <owl:Class rdf:about="&tw;ActionItem"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasAbstract">
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en"
+    >Abstract</rdfs:label>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Publication"/>
+          <owl:Class rdf:about="&tw;Presentation"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:comment xml:lang="en"
+    >Specifies the abstract text for a publication or presentation</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&foaf;name">
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Event"/>
+          <owl:Class rdf:about="&tw;Course"/>
+          <owl:Class rdf:about="&tw;Theme"/>
+          <owl:Class rdf:about="&tw;Concept"/>
+          <owl:Class rdf:about="&foaf;Project"/>
+          <owl:Class rdf:about="&foaf;Agent"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:label xml:lang="en"
+    >Name</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates the name of an entity</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasShortDescription">
+    <rdfs:comment xml:lang="en">A short description of an entity</rdfs:comment>
+    <rdfs:label xml:lang="en">Short Description</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasTitle">
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:domain rdf:resource="&foaf;Document"/>
+    <rdfs:comment xml:lang="en"
+    >Indicates the title of a publication, presentation, or announcement</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Title</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasCourseGoal">
+    <rdfs:label xml:lang="en">Course Goal</rdfs:label>
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:subPropertyOf rdf:resource="&tw;goal"/>
+    <rdfs:comment xml:lang="en"
+    >Indicates the aims and objectives of a tought course</rdfs:comment>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Course"/>
+          <owl:Class rdf:about="&tw;CourseClass"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasCitationNumber">
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:comment xml:lang="en"
+    >Specifies the citation number of a publication or presentation</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Citation Number</rdfs:label>
+<!--
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="&tw;Publication"/>
+          <owl:Class rdf:about="&tw;Presentation"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+-->
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasAcronym">
+    <rdfs:comment xml:lang="en"
+    >Specifies an acronym for an organization</rdfs:comment>
+    <rdfs:label xml:lang="en"
+    >Acronym</rdfs:label>
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;index">
+    <rdfs:range rdf:resource="&xsd;positiveInteger"/>
+    <rdfs:label xml:lang="en"
+    >Role Number</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates a person's index in an instance's role list</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasBio">
+    <rdfs:subPropertyOf rdf:resource="&dc;description"/>
+    <rdfs:label xml:lang="en"
+    >Biography</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >an account of someone's life or career</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;goal">
+    <rdfs:subPropertyOf rdf:resource="&dc;description"/>
+    <rdfs:label xml:lang="en"
+    >Goal</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >aim or desired result of a given activity, such as for a use case
+    or report</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;summary">
+    <rdfs:subPropertyOf rdf:resource="&dc;description"/>
+    <rdfs:label xml:lang="en"
+    >Summary</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >a brief statement or account of the main points of something
+    </rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;page">
+    <rdfs:subPropertyOf rdf:resource="&foaf;page"/>
+    <rdfs:label xml:lang="en"
+    >Tetherless World Page</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >A page in the Tetherless World site representing an entity</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;hasCourseNumber">
+    <rdfs:domain rdf:resource="&tw;CourseClass"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en"
+    >Course Number</rdfs:label>
+    <rdfs:comment xml:lang="en"
+    >Indicates the number associated with a course</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;humanReadablePage">
+    <rdfs:comment xml:lang="en"
+    >Property used for having the server redirect browsers to an appropriate HTML page rather than a machine-readable one</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;anyURI"/>
+    <rdfs:label xml:lang="en"
+    >Human Readable Page</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;number">
+    <rdfs:range rdf:resource="&xsd;positiveInteger"/>
+    <rdfs:label xml:lang="en">number</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an object to some number (usually an index)</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;middleInitial">
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en">Middle Initial</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates the middle initial of a person. XSLT will allow for middle names and truncate to a single letter where required.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;nameSuffix">
+    <rdfs:range rdf:resource="&xsd;string"/>
+    <rdfs:label xml:lang="en">Name Suffix</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates suffixes for a person's name, e.g. Sr., Jr., III, etc.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;doi">
+    <rdfs:subPropertyOf rdf:resource="&dc;identifier"/>
+    <rdfs:label xml:lang="en">Digital Object Identifier</rdfs:label>
+    <rdfs:comment xml:lang="en">A digital object identifier for a document</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&tw;isbn">
+    <rdfs:subPropertyOf rdf:resource="&dc;identifier"/>
+    <rdfs:label xml:lang="en">International Standard Book Number</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates an ISBN for a publication</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://tw.rpi.edu/schema/"/>
+  </owl:DatatypeProperty>
+
+<!-- Functional Properties -->
+
+  <owl:FunctionalProperty rdf:about="&tw;hasParentTheme">
+    <rdfs:range rdf:resource="&tw;Theme"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="&tw;Theme"/>
+    <rdfs:label xml:lang="en">Has Parent Theme</rdfs:label>
+    <rdfs:comment xml:lang="en">Indicates that one theme is subsumed by another</rdfs:comment>
+  </owl:FunctionalProperty>
+
+</rdf:RDF>
+
