@@ -41,18 +41,34 @@ a:hover {
     background-color: black;
 }
 
+.image-div {
+    flex: 1 1 150px;
+    margin: auto auto;
+}
+
+.tw-image {
+    width: 150px;
+    background-color: white;
+}
+
+.rpi-image {
+    width: 150px;
+    background-color: black;
+    margin-top: 5px;
+}
+
 .logo-div {
-    flex: 1 1 267px;
+    flex: 1 1 200px;
     margin: auto auto;
 }
 
 .escience-logo {
-    width: 100%;
+    width: 80%;
     margin-left: 50px;
 }
 
 .words-div {
-    flex: 1 1 267px;
+    flex: 1 1 200px;
     display: flex;
     flex-flow: column wrap;
     margin: auto auto;
@@ -217,8 +233,9 @@ div.projspons-name {
     }
     .nav {
         flex-flow: row nowrap;
-        margin: 20px 0 0 30%;
         border: none;
+        align-items: center;
+        justify-content: center;
     }
     .nav-div {
         flex: 1 1 70px;
@@ -233,16 +250,10 @@ div.projspons-name {
 
 @media screen and (max-width: 975px) {
     .escience-logo {
-        margin-left: 0;
+        margin-left: 5px;
     }
     .word-div {
         font-size: 16px;
-    }
-}
-
-@media screen and (max-width: 910px) {
-    .nav-div {
-        display: none;
     }
 }
 
